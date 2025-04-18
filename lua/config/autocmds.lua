@@ -4,9 +4,6 @@ local api = vim.api
 local function augroup(name) return api.nvim_create_augroup("user_" .. name, { clear = true }) end
 local function lazyvim_augroup(name) return api.nvim_create_augroup("lazyvim_" .. name, { clear = true }) end
 
-vim.api.nvim_del_augroup_by_name "lazyvim_close_with_q"
-vim.api.nvim_del_augroup_by_name "lazyvim_resize_splits"
-
 util.define_autocmds {
   {
     "FileType",
@@ -148,6 +145,18 @@ util.define_autocmds {
       group = augroup "resize",
       pattern = "*",
       callback = function() require("bufresize").resize() end,
+    },
+  },
+  {
+    "BufEnter",
+    {
+      group = augroup "only_for_vscode",
+      callback = function()
+        if vim.g.vscode then
+          vim.cmd [[ syntax off ]]
+          vim.cmd [[ set nospell ]]
+        end
+      end,
     },
   },
 }

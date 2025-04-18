@@ -9,6 +9,7 @@ vim.g.root_spec = { "lsp", { ".git", "lua", "README.md", "Cargo.toml", "Makefile
 
 return {
   "LazyVim/LazyVim",
+
   lazy = false,
   version = false,
 
@@ -17,8 +18,8 @@ return {
     colorscheme = "nightfox",
 
     defaults = {
-      autocmds = true,
-      keymaps = false,
+      autocmds = not vim.g.vscode,
+      keymaps = true,
     },
 
     news = {

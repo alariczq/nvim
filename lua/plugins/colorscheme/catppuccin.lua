@@ -1,4 +1,4 @@
-return {
+return _Util.Disabled {
   "catppuccin/nvim",
   name = "catppuccin",
   opts = {

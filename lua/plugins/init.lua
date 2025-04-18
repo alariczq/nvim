@@ -1,8 +1,7 @@
 return {
+  { "LazyVim/LazyVim", import = "lazyvim.plugins" },
   { "folke/lazy.nvim", tag = "stable" },
   { "nvim-lua/plenary.nvim" },
-
-  { "LazyVim/LazyVim", import = "lazyvim.plugins" },
 
   { import = "plugins.colorscheme" },
   { import = "plugins.appearance" },

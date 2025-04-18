@@ -47,6 +47,7 @@ return {
 
   {
     "keaising/im-select.nvim",
+    vscode = true,
     event = "VeryLazy",
     opts = {
       default_im_select = "com.apple.keylayout.ABC",

@@ -3,6 +3,10 @@ local keymaps_set = require("util").keymaps_set
 
 local conceallevel = vim.o.conceallevel > 0 and vim.o.conceallevel or 3
 
+if vim.g.vscode then
+  require "config.vscode"
+end
+
 keymaps_set {
   -- { "<C-p>", "", mode = "i" },
   { "<C-n>", "", mode = "i" },
@@ -16,8 +20,6 @@ keymaps_set {
 
   { "[o", [[<cmd>execute "normal! O"<CR>]], desc = "Put a blank line in the previous line" },
   { "]o", [[<cmd>execute "normal! o"<CR>]], desc = "Put a blank line in the next line" },
-
-  { "<leader>uc", function() Util.toggle("conceallevel", false, { 0, conceallevel }) end, desc = "Toggle Conceal" },
 
   -- better up/down
   { "j", "v:count == 0 ? 'gj' : 'j'", mode = { "n", "x" }, expr = true },
@@ -99,18 +101,6 @@ keymaps_set {
   { "<leader><tab>d", "<cmd>tabclose<cr>", desc = "Close Tab" },
   { "<leader><tab>[", "<cmd>tabprevious<cr>", desc = "Previous Tab" },
 
-  -- stylua: ignore start
-  {"<leader>uf", function() Util.format.toggle() end,  desc = "Toggle auto format (global)" },
-  {"<leader>uF", function() Util.format.toggle(true) end,  desc = "Toggle auto format (buffer)" },
-  {"<leader>us", function() Util.toggle("spell") end,  desc = "Toggle Spelling" },
-  {"<leader>uw", function() Util.toggle("wrap") end,  desc = "Toggle Word Wrap" },
-  {"<leader>uL", function() Util.toggle("relativenumber") end,  desc = "Toggle Relative Line Numbers" },
-  {"<leader>ul", function() Util.toggle.number() end,  desc = "Toggle Line Numbers" },
-  {"<leader>ud", function() Util.toggle.diagnostics() end,  desc = "Toggle Diagnostics" },
-  {"<leader>uT", function() if vim.b.ts_highlight then vim.treesitter.stop() else vim.treesitter.start() end end,  desc = "Toggle Treesitter Highlight" },
-  { "<leader>uh", function() Util.toggle.inlay_hints() end, desc = "Toggle Inlay Hints", cond = vim.lsp.buf.inlay_hint or vim.lsp.inlay_hint },
-  -- stylua: ignore end
-
   { "<leader>cd", vim.diagnostic.open_float, desc = "Line Diagnostics" },
 
   {
@@ -120,6 +110,4 @@ keymaps_set {
     desc = "Open Bob translator",
     cond = vim.fn.executable "osascript" == 1,
   },
-
-  { "<leader>gb", LazyVim.lazygit.blame_line, desc = "Git Blame Line" },
 }

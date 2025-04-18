@@ -9,7 +9,7 @@ return {
   {
     "numToStr/Comment.nvim",
     event = "LazyFile",
-    vscode = true,
+    vscode = false,
     opts = function()
       return {
         pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),

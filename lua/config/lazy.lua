@@ -1,3 +1,6 @@
+_G._Icons = require "config.icons"
+_G._Util = require "util"
+
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
   vim.fn.system {
